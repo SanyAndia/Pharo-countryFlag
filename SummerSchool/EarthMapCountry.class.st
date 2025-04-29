@@ -37,15 +37,15 @@ name := aXMLElement  attributeAt: 'title'.
 code := aXMLElement  attributeAt: 'id'.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'converting' }
 EarthMapCountry >> inspectorShape [
 
 	<inspectorPresentationOrder: 0 title: 'shape'>
 	| canvas |
 	canvas := RSCanvas new.
-	canvas add: self asRSShape canvas @ RSCanvasController.
-	^ SpRoassalInspectorPresenter new
-		  canvas: canvas;
+	canvas add: self asRSShape.
+	canvas @ RSCanvasController .
+	^ SpRoassalInspectorPresenter new canvas: canvas;
 		  yourself
 ]
 
@@ -59,6 +59,15 @@ EarthMapCountry >> name [
 EarthMapCountry >> name: anObject [
 
 	name := anObject
+]
+
+{ #category : 'converting' }
+EarthMapCountry >> printOn: aStream [
+
+	super printOn: aStream.
+	aStream
+		nextPutAll: '';
+		nextPutAll: name
 ]
 
 { #category : 'accessing' }
